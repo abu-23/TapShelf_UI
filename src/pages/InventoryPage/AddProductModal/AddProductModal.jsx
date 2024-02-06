@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useRef } from "react";
 import propTypes from "prop-types";
 import {
   StyledModal,
@@ -9,7 +9,10 @@ import {
   Title,
   InputDiv,
   ProductSpec,
-  ButtonDiv,
+  ImageSelected,
+  ImageInput,
+  SelectImageDiv,
+  ButtonImage,
 } from "./AddProductModalStyle";
 import { Row, Col } from "../../../components/Layout/LayoutStyle";
 
@@ -26,6 +29,7 @@ const initialValues = {
 export default function AddProductModal({ ModalToggle, AddProducts }) {
   const [productDetails, setProductDetails] = useState(initialValues);
   const [image, setImage] = useState(null);
+  const inputRef = useRef();
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       setImage(URL.createObjectURL(event.target.files[0]));
@@ -34,17 +38,40 @@ export default function AddProductModal({ ModalToggle, AddProducts }) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProductDetails({ ...productDetails, [name]: value });
-    console.log(productDetails, "productDetails");
   };
-
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+  const handleDrop = (e) => {
+    e.preventDefault();
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      setImage(URL.createObjectURL(e.dataTransfer.files[0]));
+    }
+  };
   return (
     <StyledModal>
       <Container>
         <Title>New Product</Title>
-        <ImageDiv>
-          {/* <img alt="preview image" src={image} /> */}
-          <input type="file" onChange={onImageChange} className="filetype" />
-        </ImageDiv>
+        {!image ? (
+          <ImageInput>
+            <ImageDiv onDragOver={handleDragOver} onDrop={handleDrop} />
+            <SelectImageDiv>
+              <div>Drag image here </div>
+              <div>or</div>
+              <input
+                type="file"
+                hidden
+                onChange={onImageChange}
+                ref={inputRef}
+              />
+              <ButtonImage onClick={() => inputRef.current.click()}>
+                Browse image
+              </ButtonImage>
+            </SelectImageDiv>
+          </ImageInput>
+        ) : (
+          <ImageSelected src={image} alt="Image selected " />
+        )}
         <Row>
           <Col col={4}>
             <ProductSpec>Product Name</ProductSpec>
@@ -137,6 +164,7 @@ export default function AddProductModal({ ModalToggle, AddProducts }) {
           </Col>
           <Col col={8}>
             <InputDiv
+              type="number"
               name="threshold_value"
               value={productDetails?.threshold_value}
               placeholder="Enter threshold value"

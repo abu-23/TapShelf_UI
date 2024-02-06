@@ -18,10 +18,10 @@ export const SlideInAnimation = keyframes`
 `;
 export const Container = styled.div`
   width: 30vw;
-  height: 70vh;
+  height: 89vh;
   background: white;
   position: absolute;
-  top: 12%;
+  top: 5%;
   right: 30%;
   opacity: 1;
   padding: 1rem 1.6rem;
@@ -66,6 +66,21 @@ export const Title = styled.div`
   font-weight: 600;
   text-align: left;
 `;
+export const ImageInput = styled.div`
+display:flex;
+`;
+export const ButtonImage = styled.button`
+color:blue;
+background:none;
+border:none;
+cursor:pointer;
+`;
+
+export const SelectImageDiv = styled.div`
+margin:2rem 0rem;
+text-align:center;
+color:grey;
+`;
 export const InputDiv = styled.input`
   padding: 1rem 0rem;
   border-radius: 7px;
@@ -79,8 +94,18 @@ export const ProductSpec = styled.div`
   text-align: left;
 `;
 
-export const ImageDiv = styled.div``;
+export const ImageDiv = styled.div`
+margin:1rem 2rem;
+margin-left:6rem;
+border-radius:7px;
+padding:1rem;
+height:10vh;
+width:5vw;
+border:2px dashed grey;
+`;
 
-export const ButtonDiv = styled.div`
-  display: flex;
+export const ImageSelected = styled.img`
+  height:20vh;
+  width:15vh;
+  margin-left:8rem;
 `;

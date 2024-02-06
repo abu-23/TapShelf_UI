@@ -1,5 +1,5 @@
 import React from "react";
-import { BrandNameDiv, MainDiv } from "./SidebarStyle";
+import { BrandNameDiv, MainDiv, SidebarLowerDiv } from "./SidebarStyle";
 import SidebarItem from "./sidebar-items/SidebarItem";
 export default function Sidebar() {
   return (
@@ -11,8 +11,10 @@ export default function Sidebar() {
       <SidebarItem text="Suppliers" navigateTo="/suppliers" />
       <SidebarItem text="Orders" navigateTo="/orders" />
       <SidebarItem text="Manage Store" navigateTo="/manage" />
-      <SidebarItem text="Settings" navigateTo="/settings" />
-      <SidebarItem text="Logout" navigateTo="/logout" />
+      <SidebarLowerDiv>
+        <SidebarItem text="Settings" navigateTo="/settings" />
+        <SidebarItem text="Logout" navigateTo="/logout" />
+      </SidebarLowerDiv>
     </MainDiv>
   );
 }

@@ -1,4 +1,4 @@
-const Products = [
+export const mockdata = [
   {
     id: 1,
     product: "Maggi",
@@ -27,4 +27,34 @@ const Products = [
     availablity: "Out of stock",
   },
 ];
-export default Products;
+
+export const Inventories = [
+  {
+    section: "Categories",
+    count: "14",
+    price: "",
+    duration: "Last 7 days",
+    type: "",
+  },
+  {
+    section: "Total Products",
+    count: "124",
+    price: "$321",
+    duration: "Last 7 days",
+    type: "Revenue",
+  },
+  {
+    section: "Top Selling",
+    count: "14",
+    price: "$250",
+    duration: "Last 7 days",
+    type: "Cost",
+  },
+  {
+    section: "Low Stocks",
+    count: "12",
+    price: "2",
+    duration: "Ordered",
+    type: "Not in stock",
+  },
+];

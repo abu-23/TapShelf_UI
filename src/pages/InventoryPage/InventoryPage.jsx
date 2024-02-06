@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import mockdata from "../../mocks/mocks";
+import { mockdata, Inventories } from "../../mocks/mocks";
 import { Row, Col } from "../../components/Layout/LayoutStyle";
 import AddProductModal from "./AddProductModal/AddProductModal";
 import {
@@ -14,16 +14,15 @@ import {
   ProductsDiv,
   ProductsList,
   Products,
-  ProductsEditDiv,
-  ProductDetails,
   AddProduct,
   Filters,
   Download,
-  StyledModal,
-  Container,
-  DiscardButton,
   DeleteIcon,
   Span,
+  Description,
+  SectionDiv,
+  Sections,
+  HorizontalLine,
 } from "./InventoryPageStyle";
 import deleteIcon from "../../assets/bin.png";
 
@@ -50,34 +49,31 @@ export default function InventoryPage() {
       <OverallInventoryDiv>
         <TitleDiv>Overall Inventory</TitleDiv>
         <Row>
-          <Col col={3}>
-            <SubInventoryDiv>
-              <SectionName>Categories</SectionName>
-              <Count>14</Count>
-              <Date>Last 7 days</Date>
-            </SubInventoryDiv>
-          </Col>
-          <Col col={3}>
-            <SubInventoryDiv>
-              <SectionName>Total Products</SectionName>
-              <Count>14</Count>
-              <Date>Last 7 days</Date>
-            </SubInventoryDiv>
-          </Col>
-          <Col col={3}>
-            <SubInventoryDiv>
-              <SectionName>Top Selling</SectionName>
-              <Count>5</Count>
-              <Date>Last 7 days</Date>
-            </SubInventoryDiv>
-          </Col>
-          <Col col={3}>
-            <SubInventoryDiv>
-              <SectionName>Low Stocks</SectionName>
-              <Count>12</Count>
-              <Date>Last 7 days</Date>
-            </SubInventoryDiv>
-          </Col>
+          {Inventories.map((item) => (
+            <Col col={3}>
+              <SubInventoryDiv>
+                <SectionName section={item.section}>{item.section}</SectionName>
+                <Row>
+                  <Col col={6}>
+                    <Count>{item.count}</Count>
+                  </Col>
+                  <Col col={6}>
+                    <div>{item.price}</div>
+                  </Col>
+                </Row>
+                <SectionDiv>
+                  <Row>
+                    <Col col={6}>
+                      <Date>{item.duration}</Date>
+                    </Col>
+                    <Col col={6}>
+                      <Description>{item.type}</Description>
+                    </Col>
+                  </Row>
+                </SectionDiv>
+              </SubInventoryDiv>
+            </Col>
+          ))}
         </Row>
       </OverallInventoryDiv>
       {/* //Products */}
@@ -106,15 +102,17 @@ export default function InventoryPage() {
           </Row>
         </HeadDiv>
         <ProductsList>
-          <Row>
-            <Col col={2}>Products</Col>
-            <Col col={1.5}>Buying Price</Col>
-            <Col col={2}>Quantity</Col>
-            <Col col={2}>Threshold value</Col>
-            <Col col={2}>Expiry date</Col>
-            <Col col={2}>Availablity</Col>
-            <Col col={0.5}>Delete</Col>
-          </Row>
+          <Sections>
+            <Row>
+              <Col col={2}>Products</Col>
+              <Col col={1.5}>Buying Price</Col>
+              <Col col={2}>Quantity</Col>
+              <Col col={2}>Threshold value</Col>
+              <Col col={2}>Expiry date</Col>
+              <Col col={2}>Availablity</Col>
+              <Col col={0.5}>Delete</Col>
+            </Row>
+          </Sections>
           <hr />
           <Row>
             {products?.map((item) => (
@@ -135,7 +133,9 @@ export default function InventoryPage() {
                   </div>
                 </Col>
                 <Row>
-                  <hr />
+                  <Col col={12}>
+                    <HorizontalLine />
+                  </Col>
                 </Row>
               </>
             ))}
