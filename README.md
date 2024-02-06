@@ -1,3 +1,12 @@
+--- Screenshots ---
+![TapShelf](https://github.com/abu-23/TapShelf_UI/assets/83090435/bb5643f9-7500-4ba7-aab2-2fd7c6a04693)
+
+![TapShelf2](https://github.com/abu-23/TapShelf_UI/assets/83090435/f3ef0bd1-5591-4554-940d-6163780c335b)
+
+
+![TapShelf_HP](https://github.com/abu-23/TapShelf_UI/assets/83090435/ed4c6f7f-e40c-4d59-b0f6-e6dfb2da8961)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
